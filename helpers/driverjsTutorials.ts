@@ -75,10 +75,39 @@ const copyLinkShortcutTutorial: Tutorial[] = [
   },
 ]
 
-const diffTutorials: TutorialMetadata[] = [
+const CopyE2ELinkTutorial: Tutorial[] = [
+  {
+    element: '#copyLinkButton',
+    popover: {
+      title: 'Copy E2E link',
+      description: 'Now links for large data comparison are end-to-end encrytpted automatically. Read more about it on github repo.',
+    },
+  },
+]
+
+const diffV1Tutorials: TutorialMetadata[] = [
   {
     tutorial: actionBarTutorial,
     cookieName: 'isSkipScrollInSyncTutorial',
+  },
+  {
+    tutorial: backButtonTutorial,
+    cookieName: 'isSkipBackButtonPersistsDataTutorial',
+  },
+  {
+    tutorial: copyLinkShortcutTutorial,
+    cookieName: 'isSkipCopyLinkShortcutTutorial',
+  },
+  {
+    tutorial: CopyE2ELinkTutorial,
+    cookieName: 'isSkipCopyE2ELinkTutorial',
+  }
+]
+
+const diffV2Tutorials: TutorialMetadata[] = [
+  {
+    tutorial: CopyE2ELinkTutorial,
+    cookieName: 'isSkipCopyE2ELinkTutorial',
   },
   {
     tutorial: backButtonTutorial,
@@ -102,8 +131,8 @@ const comparePageTutorials: TutorialMetadata[] = [
 ]
 
 const tutorialsMetadata: TutorialsMetadata = {
-  '/v1/diff': diffTutorials,
-  '/v2/diff': diffTutorials,
+  '/v1/diff': diffV1Tutorials,
+  '/v2/diff': diffV2Tutorials,
   '/': comparePageTutorials,
   '/v2': comparePageTutorials,
 }
