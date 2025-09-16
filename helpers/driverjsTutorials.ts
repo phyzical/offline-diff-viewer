@@ -1,4 +1,4 @@
-import { Cookies, Tutorial, TutorialsMetadata, TutorialMetadata } from './types'
+import { Cookies, Tutorial, TutorialMetadata, TutorialsMetadata } from './types'
 // Need this to keep track of latest value of cookie otherwise users sees same tutorial untill they refresh the page after the cookie is dropped
 const _cookies: Partial<Cookies> = {}
 const labelsTutorial: Tutorial[] = [
@@ -119,7 +119,7 @@ const diffV2Tutorials: TutorialMetadata[] = [
   },
 ]
 
-const comparePageTutorials: TutorialMetadata[] = [
+const comparePageV1Tutorials: TutorialMetadata[] = [
   {
     tutorial: labelsTutorial,
     cookieName: 'isSkipTutorial',
@@ -130,11 +130,18 @@ const comparePageTutorials: TutorialMetadata[] = [
   },
 ]
 
+const comparePageV2Tutorials: TutorialMetadata[] = [
+  {
+    tutorial: labelsTutorial,
+    cookieName: 'isSkipTutorial',
+  },
+]
+
 const tutorialsMetadata: TutorialsMetadata = {
   '/v1/diff': diffV1Tutorials,
   '/v2/diff': diffV2Tutorials,
-  '/': comparePageTutorials,
-  '/v2': comparePageTutorials,
+  '/': comparePageV1Tutorials,
+  '/v2': comparePageV2Tutorials,
 }
 
 export default async function showTutorials(
