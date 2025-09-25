@@ -14,7 +14,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-
         # This action generates changelog which then the release action consumes
       - name: Conventional Changelog Action
         id: changelog
