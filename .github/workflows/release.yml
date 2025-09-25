@@ -14,24 +14,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-
         # This action generates changelog which then the release action consumes
-      - name: Conventional Changelog Action
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
-        with:
-          github-token: ${{ secrets.github_token }}
-          skip-commit: 'true'
+      # - name: Conventional Changelog Action
+      #   id: changelog
+      #   uses: TriPSs/conventional-changelog-action@v3
+      #   with:
+      #     github-token: ${{ secrets.github_token }}
+      #     skip-commit: 'true'
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
-        with:
-          tag_name: ${{ steps.changelog.outputs.tag }}
-          release_name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
+      # - name: Create Release
+      #   uses: actions/create-release@v1
+      #   if: ${{ steps.changelog.outputs.skipped == 'false' }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.github_token }}
+      #   with:
+      #     tag_name: ${{ steps.changelog.outputs.tag }}
+      #     release_name: ${{ steps.changelog.outputs.tag }}
+      #     body: ${{ steps.changelog.outputs.clean_changelog }}
 
       - name: Docker meta
         id: meta
@@ -43,7 +42,7 @@ jobs:
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
         with:
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/${{ github.repository }}:latest #, ghcr.io/${{ github.repository }}:${{ steps.changelog.outputs.tag }}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:latest
           platforms: linux/amd64
           labels: |
